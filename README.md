@@ -50,4 +50,4 @@ Install required dependencies on the **sam-data** virtualenv with pip:
 
 ### Modify Configuration
 
-Modify config.cfg to reflect your production database and logging settings appropriately.
+Modify **config.cfg** to reflect your production database and logging settings appropriately.
