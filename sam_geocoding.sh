@@ -1,3 +1,3 @@
 #!/bin/sh
-workon data
+workon sam-data
 python sam_geocoding.py
