@@ -28,6 +28,7 @@ The following python modules/libraries are used by this project and installed th
 *These instructions have only been tested on a fresh Ubuntu 14.04 instance. YMMV.*
 
 ### Install and Configure virtualenv
+
 On the command line, create a virtualenv called **sam-data** for this project:
 
 1. Install pip `sudo apt-get install python-pip`
@@ -40,8 +41,13 @@ On the command line, create a virtualenv called **sam-data** for this project:
 8. Create a new virtualenv `mkvirtualenv sam-data`
 
 ### Install Dependencies
+
 Install required dependencies on the **sam-data** virtualenv with pip:
 
 	cd sam-geolocation-import
 	workon sam-data
 	pip install -r requirements.txt
+
+### Modify Configuration
+
+Modify config.cfg to reflect your production database and logging settings appropriately.
