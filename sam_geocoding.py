@@ -1,7 +1,11 @@
 #!/usr/bin/python
+import logging
 from pymongo import MongoClient
 from geopy.geocoders import GoogleV3
 from rate_limited_queue import RateLimitedQueue, RateLimit
+
+LOG_FILENAME = 'sam-geocoding.log'
+logging.basicConfig(filename = LOG_FILENAME, level = logging.INFO)
 
 # Intialize mongo client and connect to database
 client = MongoClient('localhost', 3001)
@@ -32,6 +36,7 @@ def get_geocoded_list():
 		if is_unique_address(address):
 			location = geocoded_locations[i]
 			if location is not None:
+				logging.info("Found location info for '" + address + "'")
 				addresses_list.append({
 					"address": address,
 					"longitude": location.longitude,
@@ -40,11 +45,10 @@ def get_geocoded_list():
 	return addresses_list
 
 def is_unique_address(address):
-	result = True
 	for loc in db.locations.find():
 		if loc['address'] is not address:
-			result = False
-	return result
+			return False
+	return True
 
 def get_unique_address_list():
 	addresses = list()
@@ -59,4 +63,4 @@ def get_unique_address_list():
 addresses_list = get_geocoded_list()
 if len(addresses_list) > 0:
 	result = db.locations.insert_many(addresses_list)
-	print("Added " + len(result.inserted_ids) + " new geolocations.")
+	logging.info("Added " + str(len(result.inserted_ids)) + " new geolocations.")
