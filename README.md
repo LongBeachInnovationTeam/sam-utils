@@ -21,7 +21,8 @@ The following python modules/libraries are used by this project and installed th
 
 - [`pymongo`](https://pypi.python.org/pypi/pymongo)
 - [`geopy`](https://pypi.python.org/pypi/geopy)
-- [`rate_limited_queue`](https://pypi.python.org/pypi/rate_limited_queue/0.0.6)
+- [`rate_limited_queue`](https://pypi.python.org/pypi/rate_limited_queue/)
+- [`address`](https://pypi.python.org/pypi/address)
     
 ## Deployment
 

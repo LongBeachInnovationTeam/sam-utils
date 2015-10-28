@@ -4,6 +4,7 @@ import ConfigParser
 from pymongo import MongoClient
 from geopy.geocoders import GoogleV3
 from rate_limited_queue import RateLimitedQueue, RateLimit
+from address import AddressParser, Address
 
 # Read options from our config file
 config = ConfigParser.RawConfigParser()
@@ -24,6 +25,9 @@ rate_limit = RateLimit(duration = 1, max_per_interval = 10)
 
 # Initialize GoogleV3
 geolocator = GoogleV3()
+
+# Initialize address parser
+address_parser = AddressParser()
 
 def get_geocoded_list():
 	# Create a list of all addresses
@@ -48,7 +52,8 @@ def get_geocoded_list():
 				addresses_list.append({
 					"address": address,
 					"longitude": location.longitude,
-					"latitude": location.latitude
+					"latitude": location.latitude,
+					"zipcode": address_parser.parse_address(location.address).zip
 				})
 	return addresses_list
 
