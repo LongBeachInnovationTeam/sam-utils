@@ -1,15 +1,23 @@
 #!/usr/bin/python
 import logging
+import ConfigParser
 from pymongo import MongoClient
 from geopy.geocoders import GoogleV3
 from rate_limited_queue import RateLimitedQueue, RateLimit
 
-LOG_FILENAME = 'sam-geocoding.log'
+# Read options from our config file
+config = ConfigParser.RawConfigParser()
+config.read('config.cfg')
+
+LOG_FILENAME = config.get('logging', 'LOG_FILENAME')
 logging.basicConfig(filename = LOG_FILENAME, level = logging.INFO)
 
 # Intialize mongo client and connect to database
-client = MongoClient('localhost', 3001)
-db = client['meteor']
+DB_NAME = config.get('database', 'DB_NAME')
+HOSTNAME = config.get('database', 'HOSTNAME')
+PORT = config.getint('database', 'PORT')
+client = MongoClient(HOSTNAME, PORT)
+db = client[DB_NAME]
 
 # No more than ten addresses geocoded per second
 rate_limit = RateLimit(duration = 1, max_per_interval = 10)
@@ -36,7 +44,7 @@ def get_geocoded_list():
 		if is_unique_address(address):
 			location = geocoded_locations[i]
 			if location is not None:
-				logging.info("Found location info for '" + address + "'")
+				logging.info("Found location info for '%s'", address)
 				addresses_list.append({
 					"address": address,
 					"longitude": location.longitude,
@@ -63,6 +71,6 @@ def get_unique_address_list():
 addresses_list = get_geocoded_list()
 if len(addresses_list) > 0:
 	result = db.locations.insert_many(addresses_list)
-	logging.info("Added " + str(len(result.inserted_ids)) + " new geolocations.")
+	logging.info("Added %d new geolocations.", len(result.inserted_ids))
 else:
 	logging.info("No new geolocations were found.")
