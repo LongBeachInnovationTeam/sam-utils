@@ -64,3 +64,5 @@ addresses_list = get_geocoded_list()
 if len(addresses_list) > 0:
 	result = db.locations.insert_many(addresses_list)
 	logging.info("Added " + str(len(result.inserted_ids)) + " new geolocations.")
+else:
+	logging.info("No new geolocations were found.")
