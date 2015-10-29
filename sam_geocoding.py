@@ -1,4 +1,5 @@
 #!/usr/bin/python
+import datetime
 import logging
 import ConfigParser
 from pymongo import MongoClient
@@ -93,10 +94,24 @@ def get_geocoded_list():
 	else:
 		return list()
 
-# Insert into db
+# Update the 'locations' table
 addresses_list = get_geocoded_list()
 if len(addresses_list) > 0:
 	result = db.locations.insert_many(addresses_list)
 	logging.info("Added %d new geolocations.", len(result.inserted_ids))
 else:
 	logging.info("No new geolocations were found.")
+
+# With the updated 'locations' table, update each contact with the 'geoLocation'
+# field containing all the info this script compiled
+for contact in db.contacts.find():
+	if 'address' in contact:
+		address = contact['address']
+		if address not in locations_set:
+			location = db.locations.find_one({'address': address})
+			if location:
+				contact['latitude'] = location['latitude']
+				contact['longitude'] = location['longitude']
+				contact['zipcode'] = location['zipcode']
+				contact['lastModifiedDate'] = datetime.datetime.now()
+				db.contacts.save(contact)
