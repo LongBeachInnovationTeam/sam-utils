@@ -57,9 +57,9 @@ Modify **config.cfg** to reflect your production database and logging settings a
 
 Created a file called **secret.cfg**, created a section called **keys**, and under that section add a hash key called `GOOGLE_SERVER_API_KEY` with its hash value populated with your generated API key.
 
-You may obtain a Google V3 API key by going to [https://console.developers.google.com/](https://console.developers.google.com/), enabling **Google Maps Geolocation API** for your application, and generating a key through its console panel.
+You may obtain a Google V3 API key by going to [https://console.developers.google.com/](https://console.developers.google.com/), enabling the **Google Maps Geolocation API** for your application, and generating a key through its console panel.
 
-#### Example sample.cfg
+### Example sample.cfg
 
     [keys]
     GOOGLE_SERVER_API_KEY: YOUR_GENERATED_API_KEY_HERE
