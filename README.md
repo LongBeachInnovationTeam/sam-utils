@@ -10,12 +10,12 @@ For each new unique address found for a contact, the address, latitude, and long
 
 This repository contains the following files:
 
-		* config.cfg 				- configuration file containing database and logging info
+	* config.cfg 		- configuration file containing database and logging info
     * sam_geocoding.py	- script to insert found geolocation info into the locations table
     * requirements.txt	- list of required dependencies to install through pip
     * sam_geocoding.sh 	- shell script to execute sam_geocoding.py in a scheduled crontab
 
-## Dependencies
+## External Dependencies
 
 The following python modules/libraries are used by this project and installed through pip via **requirements.txt**:
 
@@ -52,3 +52,14 @@ Install required dependencies on the **sam-data** virtualenv with pip:
 ### Modify Configuration
 
 Modify **config.cfg** to reflect your production database and logging settings appropriately.
+
+### Managing Google V3 API Keys
+
+Created a file called **secret.cfg**, created a section called **keys**, and under that section add a hash key called `GOOGLE_SERVER_API_KEY` with its hash value populated with your generated API key.
+
+You may obtain a Google V3 API key by going to [https://console.developers.google.com/](https://console.developers.google.com/), enabling **Google Maps Geolocation API** for your application, and generating a key through its console panel.
+
+#### Example sample.cfg
+
+    [keys]
+    GOOGLE_SERVER_API_KEY: YOUR_GENERATED_API_KEY_HERE

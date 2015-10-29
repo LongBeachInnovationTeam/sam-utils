@@ -24,8 +24,13 @@ db = client[DB_NAME]
 # No more than ten addresses geocoded per second
 rate_limit = RateLimit(duration = 1, max_per_interval = 10)
 
+# Get our SECRET Google API key
+secret = ConfigParser.RawConfigParser()
+secret.read('secret.cfg')
+GOOGLE_SERVER_API_KEY = secret.get('keys', 'GOOGLE_SERVER_API_KEY')
+
 # Initialize GoogleV3
-geolocator = GoogleV3()
+geolocator = GoogleV3(GOOGLE_SERVER_API_KEY)
 
 # Initialize address parser
 address_parser = AddressParser()
