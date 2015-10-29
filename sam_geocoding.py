@@ -109,14 +109,14 @@ else:
 
 # With the updated 'locations' table, update each contact with the 'geoLocation'
 # field containing all the info this script compiled
-for contact in db.contacts.find():
-	if 'address' in contact:
-		address = contact['address']
-		if address not in locations_set:
-			location = db.locations.find_one({'address': address})
-			if location:
-				contact['latitude'] = location['latitude']
-				contact['longitude'] = location['longitude']
-				contact['zipcode'] = location['zipcode']
-				contact['lastModifiedDate'] = datetime.datetime.now()
-				db.contacts.save(contact)
+# for contact in db.contacts.find():
+# 	if 'address' in contact:
+# 		address = contact['address']
+# 		if address not in locations_set:
+# 			location = db.locations.find_one({'address': address})
+# 			if location:
+# 				contact['latitude'] = location['latitude']
+# 				contact['longitude'] = location['longitude']
+# 				contact['zipcode'] = location['zipcode']
+# 				contact['lastModifiedDate'] = datetime.datetime.now()
+# 				db.contacts.save(contact)
