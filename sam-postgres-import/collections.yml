@@ -1,0 +1,86 @@
+meteor:
+  contacts:
+    :columns:
+    - id:
+      :source: _id
+      :type: TEXT
+    - name:
+      :source: name
+      :type: TEXT
+    - title:
+      :source: title
+      :type: TEXT
+    - organization:
+      :source: organization
+      :type: TEXT
+    - phone:
+      :source: phone
+      :type: TEXT
+    - phone_ext:
+      :source: phoneExt
+      :type: TEXT
+    - cell:
+      :source: cell
+      :type: TEXT
+    - email:
+      :source: email
+      :type: TEXT
+    - address:
+      :source: address
+      :type: TEXT
+    - website:
+      :source: website
+      :type: TEXT
+    - tags:
+      :source: tags
+      :type: JSON
+    - regular_meetings:
+      :source: regularMeetings
+      :type: TEXT
+    - notable_annual_events:
+      :source: notableAnnualEvents
+      :type: TEXT
+    - notes:
+      :source: notes
+      :type: TEXT
+    - quotes:
+      :source: quotes
+      :type: JSON
+    - interactions:
+      :source: interactions
+      :type: JSON
+    - owner:
+      :source: owner
+      :type: TEXT
+    - owner_username:
+      :source: ownerUsername
+      :type: TEXT
+    - created_date:
+      :source: createdDate
+      :type: TIMESTAMP
+    - last_modified_date:
+      :source: lastModifiedDate
+      :type: TIMESTAMP
+    :meta:
+      :table: contacts
+      :extra_props: true
+  locations:
+    :columns:
+    - id:
+      :source: _id
+      :type: TEXT
+    - address:
+      :source: address
+      :type: TEXT
+    - zipcode:
+      :source: zipcode
+      :type: TEXT
+    - longitude:
+      :source: longitude
+      :type: DOUBLE PRECISION
+    - latitude:
+      :source: latitude
+      :type: DOUBLE PRECISION
+    :meta:
+      :table: locations
+      :extra_props: false
