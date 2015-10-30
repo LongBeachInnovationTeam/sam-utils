@@ -12,7 +12,7 @@ config = ConfigParser.RawConfigParser()
 config.read('config.cfg')
 
 LOG_FILENAME = config.get('logging', 'LOG_FILENAME')
-logging.basicConfig(filename = LOG_FILENAME, level = logging.INFO)
+logging.basicConfig(filename = LOG_FILENAME, level = logging.INFO, format = '%(asctime)s %(message)s')
 
 # Intialize mongo client and connect to database
 DB_NAME = config.get('database', 'DB_NAME')
