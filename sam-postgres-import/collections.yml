@@ -1,4 +1,4 @@
-meteor:
+sam-contacts:
   contacts:
     :columns:
     - id:
