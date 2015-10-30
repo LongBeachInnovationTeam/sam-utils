@@ -1,7 +1,4 @@
 #!/bin/sh
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-source /usr/local/bin/virtualenvwrapper.sh
-
-workon sam-data
+source /home/app/.virtualenvs/sam-data/bin/activate
 python sam_geocoding.py
+deactivate
