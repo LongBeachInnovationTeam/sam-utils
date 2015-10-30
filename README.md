@@ -4,14 +4,14 @@
 
 A python script to populate contact geolocation information for the [SAM CRM web application](https://github.com/LongBeachInnovationTeam/sam-contacts).
 
-For each new unique address found for a contact, the address, latitude, and longitude are added to the **locations** table of the **sam-contacts** meteor/mongo database.
+For each new unique address found for a contact, the address, latitude, and longitude are added to the **locations** collection of the **sam-contacts** meteor/mongo database.
 
 ## File Structure
 
 This repository contains the following files:
 
 	* config.cfg 		- configuration file containing database and logging info
-    * sam_geocoding.py	- script to insert found geolocation info into the locations table
+    * sam_geocoding.py	- script to insert found geolocation info into the locations collection
     * requirements.txt	- list of required dependencies to install through pip
     * sam_geocoding.sh 	- shell script to execute sam_geocoding.py in a scheduled crontab
 

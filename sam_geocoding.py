@@ -71,7 +71,7 @@ def get_geocoded_list():
 	# Create a unique list of all addresses
 	addresses = get_unique_address_list()
 	# If unique addresses are found, find geolocation and insert
-	# into the locations table
+	# into the locations collection
 	if addresses > 0:
 		# Prepare a rate limited queue to execute the geocode function
 		queue = RateLimitedQueue(
@@ -99,24 +99,10 @@ def get_geocoded_list():
 	else:
 		return list()
 
-# Update the 'locations' table
+# Update the 'locations' collection
 addresses_list = get_geocoded_list()
 if len(addresses_list) > 0:
 	result = db.locations.insert_many(addresses_list)
 	logging.info("Added %d new geolocations.", len(result.inserted_ids))
 else:
 	logging.info("No new geolocations were found.")
-
-# With the updated 'locations' table, update each contact with the 'geoLocation'
-# field containing all the info this script compiled
-# for contact in db.contacts.find():
-# 	if 'address' in contact:
-# 		address = contact['address']
-# 		if address not in locations_set:
-# 			location = db.locations.find_one({'address': address})
-# 			if location:
-# 				contact['latitude'] = location['latitude']
-# 				contact['longitude'] = location['longitude']
-# 				contact['zipcode'] = location['zipcode']
-# 				contact['lastModifiedDate'] = datetime.datetime.now()
-# 				db.contacts.save(contact)
