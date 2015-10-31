@@ -59,7 +59,17 @@ Created a file called **secret.cfg**, created a section called **keys**, and und
 
 You may obtain a Google V3 API key by going to [https://console.developers.google.com/](https://console.developers.google.com/), enabling the **Google Maps Geolocation API** for your application, and generating a key through its console panel.
 
-### Example sample.cfg
+### Example secrets.cfg
 
     [keys]
     GOOGLE_SERVER_API_KEY: YOUR_GENERATED_API_KEY_HERE
+
+### Scheduling Geolocation Lookups/Imports
+
+We can use crontab to schedule the **sam_geocoding.sh** script to run every 5 minutes:
+
+	$ crontab -e
+
+Example crontab -e line:
+	$ */5 * * * *     /home/app/scripts/sam-utils/sam-gelocation-import/sam_geocoding.sh
+
