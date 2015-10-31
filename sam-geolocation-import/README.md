@@ -72,5 +72,5 @@ We can use crontab to schedule the **sam_geocoding.sh** script to run every 5 mi
 
 Example crontab line:
 
-	*/5 * * * *     /home/app/scripts/sam-utils/sam-gelocation-import/sam_geocoding.sh
+	*/5 * * * *     /home/app/scripts/sam-utils/sam-geolocation-import/sam_geocoding.sh
 
